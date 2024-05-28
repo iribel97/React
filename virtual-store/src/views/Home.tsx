@@ -1,7 +1,7 @@
 import styles from './Home.module.css';
-import Footer from './Footer';
-import Hero from './Hero';
-import NavBar from './NavBar';
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import Hero from "../components/Hero";
 
 function Home() {
   return (
