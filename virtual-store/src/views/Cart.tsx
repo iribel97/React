@@ -7,7 +7,7 @@ function Cart() {
   return (
     <>
       <NavBar />
-      <Hero />
+      <Hero firstText={"mi"}  secondText={"carrito"}/>
       <main>
         <article className={styles["product-cart"]}>
           <img
