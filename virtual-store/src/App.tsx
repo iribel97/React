@@ -1,10 +1,10 @@
-import Details from "./views/Details"
+import Cart from "./views/Cart"
 
 function App() {
 
   return (
     <>
-      <Details />
+      <Cart />
     </>
   )
 }
