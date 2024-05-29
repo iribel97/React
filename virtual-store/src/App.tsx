@@ -8,7 +8,7 @@ function App() {
   const browserRouter = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/cart", element: <Cart /> },
-    { path: "/details", element: <Details /> },
+    { path: "/details/:id", element: <Details /> },
   ]);
 
 

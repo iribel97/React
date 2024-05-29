@@ -1,4 +1,5 @@
 import styles from './Home.module.css';
+import { Link } from 'react-router-dom';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
@@ -10,7 +11,7 @@ function Home() {
       <Hero firstText={"tecnología"} secondText={"renovada"}  />
       <main>
         <div className={styles["product-container"]} id="products">
-          <a className={styles["product-card"]} href="./details.html">
+          <Link className={styles["product-card"]} to="/details/1234">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -27,8 +28,8 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
-          <a className={styles["product-card"]} href="./details.html">
+          </Link>
+          <Link className={styles["product-card"]} to="/details/4567">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -45,8 +46,8 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
-          <a className={styles["product-card"]} href="./details.html">
+          </Link>
+          <Link className={styles["product-card"]} to="/details/78912">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -63,8 +64,8 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
-          <a className={styles["product-card"]} href="./details.html">
+          </Link>
+          <Link className={styles["product-card"]} to="/details/2345">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -81,8 +82,8 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
-          <a className={styles["product-card"]} href="./details.html">
+          </Link>
+          <Link className={styles["product-card"]} to="/details/5678">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -99,8 +100,8 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
-          <a className={styles["product-card"]} href="./details.html">
+          </Link>
+          <Link className={styles["product-card"]} to="/details/89123Link">
             <img
               className={styles["product-img"]}
               src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -117,7 +118,7 @@ function Home() {
                 Incluye impuesto País y percepción AFIP
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </main>
       <Footer />

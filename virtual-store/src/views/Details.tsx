@@ -1,5 +1,6 @@
 import styles from "./Details.module.css";
-import styles1 from '../components/Home.module.css';
+import styles1 from './Home.module.css';
+import { Link } from 'react-router-dom';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
@@ -111,7 +112,7 @@ function Details() {
           <div className={styles["sales-block"]}>
             <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
             <div id="product-container" className={styles1["product-container"]}>
-              <a className={styles1["product-card"]} href="./details.html">
+              <Link className={styles1["product-card"]} to="/details/1234">
                 <img
                   className={styles1["product-img"]}
                   src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
@@ -131,8 +132,8 @@ function Details() {
                     Incluye impuesto País y percepción AFIP
                   </div>
                 </div>
-              </a>
-              <a className={styles1["product-card"]} href="./details.html">
+              </Link>
+              <Link className={styles1["product-card"]} to="/details/1234">
                 <img
                   className={styles1["product-img"]}
                   src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
@@ -152,8 +153,8 @@ function Details() {
                     Incluye impuesto País y percepción AFIP
                   </div>
                 </div>
-              </a>
-              <a className={styles1["product-card"]} href="./details.html">
+              </Link>
+              <Link className={styles1["product-card"]} to="/details/1234">
                 <img
                   className={styles1["product-img"]}
                   src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
@@ -173,7 +174,7 @@ function Details() {
                     Incluye impuesto País y percepción AFIP
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
