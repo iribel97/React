@@ -1,12 +1,14 @@
+import { useState } from "react";
 import styles from "./Checkout.module.css";
 
 export default function Checkout({ product }) {
+  const [quantity, setQuantity] = useState(1);
   return (
     <section className={styles["product-checkout-block"]}>
       <div className={styles["checkout-container"]}>
         <span className={styles["checkout-total-label"]}>Total:</span>
         <h2 id="price" className={styles["checkout-total-price"]}>
-          $ {product.price.toLocaleString()}
+          $ {(product.price * quantity).toLocaleString()}
         </h2>
         <p className={styles["checkout-description"]}>
           Includes Country tax and AFIP collection
@@ -29,7 +31,13 @@ export default function Checkout({ product }) {
         </ul>
         <div className={styles["checkout-process"]}>
           <div className={styles["top"]}>
-            <input type="number" min="1" defaultValue="1" />
+            <input
+              id="input-quantity"
+              type="number"
+              min="1"
+              defaultValue={quantity}
+              onChange={(event) => setQuantity(Number(event?.target.value))}
+            />
             <button type="button" className={styles["cart-btn"]}>
               Add to cart
             </button>
