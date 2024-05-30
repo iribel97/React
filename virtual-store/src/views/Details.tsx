@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import styles from "./Details.module.css";
-import styles1 from '../components/ProductCard.module.css';
-import styles2 from './Home.module.css'
-import { Link } from 'react-router-dom';
+import styles1 from './Home.module.css';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import products from "../assets/products";
@@ -113,7 +111,7 @@ function Details() {
           </div>
           <div className={styles["sales-block"]}>
             <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
-            <div id="product-container" className={styles2["product-container"]}>
+            <div id="product-container" className={styles1["product-container"]}>
               {onsale.map((each) => (
                 <ProductCard
                   key={each.id}
