@@ -280,7 +280,7 @@ const prod20 = new Product(
     false
 );
 
-export const products = [
+const products = [
     prod1,
     prod11,
     prod14,
@@ -304,4 +304,4 @@ export const products = [
     prod20,
 ];
 
-export { products };
+export default products;

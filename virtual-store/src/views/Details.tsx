@@ -1,5 +1,6 @@
 import styles from "./Details.module.css";
-import styles1 from './Home.module.css';
+import styles1 from '../components/ProductCard.module.css';
+import styles2 from './Home.module.css'
 import { Link } from 'react-router-dom';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
@@ -111,7 +112,7 @@ function Details() {
           </div>
           <div className={styles["sales-block"]}>
             <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
-            <div id="product-container" className={styles1["product-container"]}>
+            <div id="product-container" className={styles2["product-container"]}>
               <Link className={styles1["product-card"]} to="/details/1234">
                 <img
                   className={styles1["product-img"]}
