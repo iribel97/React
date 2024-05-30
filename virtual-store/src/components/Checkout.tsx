@@ -3,6 +3,7 @@ import styles from "./Checkout.module.css";
 
 export default function Checkout({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const [button, setButton] = useState(false);
   return (
     <section className={styles["product-checkout-block"]}>
       <div className={styles["checkout-container"]}>
@@ -38,8 +39,12 @@ export default function Checkout({ product }) {
               defaultValue={quantity}
               onChange={(event) => setQuantity(Number(event?.target.value))}
             />
-            <button type="button" className={styles["cart-btn"]}>
-              Add to cart
+            <button
+              type="button"
+              className={button ? styles["remove-btn"] : styles["cart-btn"]}
+              onClick={() => setButton(!button)}
+            >
+              {button ? "Remove from cart" : "Add to cart"}
             </button>
           </div>
         </div>
