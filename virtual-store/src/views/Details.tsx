@@ -1,11 +1,18 @@
+import { useParams } from "react-router-dom";
 import styles from "./Details.module.css";
 import styles1 from '../components/ProductCard.module.css';
 import styles2 from './Home.module.css'
 import { Link } from 'react-router-dom';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import products from "../assets/products";
+import ProductCard from "../components/ProductCard";
 
 function Details() {
+  const { id } = useParams();
+  const product = products.find((each) => each.id === id);
+  const onsale = products.filter((each) => each.onsale);
+
   return (
     <>
       <NavBar />
@@ -14,29 +21,28 @@ function Details() {
           <div id="details" className={styles["columns-container"]}>
             <section className={styles["product-images-block"]}>
               <div className={styles["product-images"]}>
-                <img
-                  className={styles["mini-img"]}
-                  src="https://i.postimg.cc/HxGQcrcp/mock1.jpg"
-                  alt="MacBook Pro 13'4"
-                >
-                </img>
-                <img
-                  className={styles["mini-img"]}
-                  src="https://i.postimg.cc/Y91Q1tYQ/mock2.jpg"
-                  alt="MacBook Pro 13'4"
-                >
-                </img>
+                {
+                  product.images.map((each, index) => (
+                    <img
+                      key={index}
+                      className={styles["mini-img"]}
+                      src={each}
+                      alt={product.title}
+                    >
+                    </img>
+                  ))
+                }
               </div>
               <img
                 className={styles["big-img"]}
                 id="big-img"
-                src="https://i.postimg.cc/HxGQcrcp/mock1.jpg"
+                src={product.images[0]}
                 alt="MacBook Pro 13'4"
               >
               </img>
             </section>
             <div className={styles["product-description-block"]}>
-              <h1 className={styles["product-title"]}>MacBook Pro 13'4</h1>
+              <h1 className={styles["product-title"]}>{product.title}</h1>
               <form className={styles["product-selector"]}>
                 <fieldset className={styles["product-fieldset"]}>
                   <label className={styles["product-label"]} htmlFor="color">
@@ -46,23 +52,18 @@ function Details() {
                     <option value="" disabled>
                       Selecciona un color
                     </option>
-                    <option value="Silver">Silver</option>
+                    {
+                      product.colors.map((each, index) => (
+                        <option key={index} value={each}>{each}</option>
+                      ))
+                    } 
                   </select>
                 </fieldset>
               </form>
               <div className={styles["product-description"]}>
                 <span className={styles["product-label"]}>Descripción</span>
                 <p>
-                  Experience the power of creativity with the MacBook Pro 13'4.
-                  Featuring 8GB of RAM and 512GB of storage, this laptop
-                  provides the performance and storage capacity needed for
-                  demanding tasks. The sleek design in silver and space gray
-                  adds a touch of sophistication. The high-resolution Retina
-                  display brings your visuals to life, whether you're editing
-                  photos, creating videos, or simply browsing the web. With the
-                  latest technology and a lightweight build, the MacBook Pro
-                  13'4 is the perfect companion for professionals and creative
-                  individuals alike.
+                  {product.description}
                 </p>
               </div>
             </div>
@@ -70,7 +71,7 @@ function Details() {
               <div className={styles["checkout-container"]}>
                 <span className={styles["checkout-total-label"]}>Total:</span>
                 <h2 id="price" className={styles["checkout-total-price"]}>
-                  $750000
+                  $ {product.price}	
                 </h2>
                 <p className={styles["checkout-description"]}>
                   Incluye impuesto PAIS y percepción AFIP. Podés recuperar AR$
@@ -113,69 +114,16 @@ function Details() {
           <div className={styles["sales-block"]}>
             <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
             <div id="product-container" className={styles2["product-container"]}>
-              <Link className={styles1["product-card"]} to="/details/1234">
-                <img
-                  className={styles1["product-img"]}
-                  src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
-                  alt="Kindle Paperwhite"
-                >
-                </img>
-                <div className={styles1["product-info"]}>
-                  <span className={styles1["product-title"]}>
-                    Kindle Paperwhite
-                  </span>
-                  <span className={styles1["product-description"]}>Black</span>
-                  <div className={styles1["product-price-block"]}>
-                    <span className={styles1["product-price"]}>100000</span>
-                    <span className={styles1["product-discount"]}>50% Off</span>
-                  </div>
-                  <div className={styles1["product-tax-policy"]}>
-                    Incluye impuesto País y percepción AFIP
-                  </div>
-                </div>
-              </Link>
-              <Link className={styles1["product-card"]} to="/details/1234">
-                <img
-                  className={styles1["product-img"]}
-                  src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
-                  alt="Kindle Paperwhite"
-                >
-                </img>
-                <div className={styles1["product-info"]}>
-                  <span className={styles1["product-title"]}>
-                    Kindle Paperwhite
-                  </span>
-                  <span className={styles1["product-description"]}>Black</span>
-                  <div className={styles1["product-price-block"]}>
-                    <span className={styles1["product-price"]}>100000</span>
-                    <span className={styles1["product-discount"]}>50% Off</span>
-                  </div>
-                  <div className={styles1["product-tax-policy"]}>
-                    Incluye impuesto País y percepción AFIP
-                  </div>
-                </div>
-              </Link>
-              <Link className={styles1["product-card"]} to="/details/1234">
-                <img
-                  className={styles1["product-img"]}
-                  src="https://i.postimg.cc/2ymFtsTn/kindle2.jpg"
-                  alt="Kindle Paperwhite"
-                >
-                </img>
-                <div className={styles1["product-info"]}>
-                  <span className={styles1["product-title"]}>
-                    Kindle Paperwhite
-                  </span>
-                  <span className={styles1["product-description"]}>Black</span>
-                  <div className={styles1["product-price-block"]}>
-                    <span className={styles1["product-price"]}>100000</span>
-                    <span className={styles1["product-discount"]}>50% Off</span>
-                  </div>
-                  <div className={styles1["product-tax-policy"]}>
-                    Incluye impuesto País y percepción AFIP
-                  </div>
-                </div>
-              </Link>
+              {onsale.map((each) => (
+                <ProductCard
+                  key={each.id}
+                  id={each.id}
+                  title={each.title}
+                  price={each.price}
+                  color={each.colors[0]}
+                  image={each.images[0]}
+                />
+              ))}	
             </div>
           </div>
         </div>
