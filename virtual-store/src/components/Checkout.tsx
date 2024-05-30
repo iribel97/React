@@ -1,9 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Checkout.module.css";
 
-export default function Checkout({ product }) {
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  stock: number;
+  images: string[];
+  colors: string[];
+  onsale: boolean;
+  quantity: number;
+}
+
+interface CheckoutProps {
+  product: Product;
+}
+
+function Checkout({ product }: CheckoutProps) {
   const [quantity, setQuantity] = useState(1);
   const [button, setButton] = useState(false);
+
+  // Gestionar los datos del localStorage
+  useEffect(() => {
+    let productsOnCart: Product[] = [];
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      productsOnCart = JSON.parse(cart);
+    }
+    const isInCart = productsOnCart.some((each) => each.id === product.id);
+    setButton(isInCart);
+  }, [product]);
+
+  const manageCart = () => {
+    let productsOnCart: Product[] = [];
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      productsOnCart = JSON.parse(cart);
+    }
+
+    const isInCart = productsOnCart.some((each) => each.id === product.id);
+    if (!isInCart) {
+      productsOnCart.push({ ...product, quantity });
+      setButton(true);
+    } else {
+      productsOnCart = productsOnCart.filter((each) => each.id !== product.id);
+      setButton(false);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(productsOnCart));
+  };
+
   return (
     <section className={styles["product-checkout-block"]}>
       <div className={styles["checkout-container"]}>
@@ -36,13 +83,13 @@ export default function Checkout({ product }) {
               id="input-quantity"
               type="number"
               min="1"
-              defaultValue={quantity}
+              value={quantity}
               onChange={(event) => setQuantity(Number(event?.target.value))}
             />
             <button
               type="button"
               className={button ? styles["remove-btn"] : styles["cart-btn"]}
-              onClick={() => setButton(!button)}
+              onClick={manageCart}
             >
               {button ? "Remove from cart" : "Add to cart"}
             </button>
@@ -52,3 +99,5 @@ export default function Checkout({ product }) {
     </section>
   );
 }
+
+export default Checkout;
