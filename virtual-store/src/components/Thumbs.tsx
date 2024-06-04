@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Thumbs.module.css";
 
 function Thumbs({ product }) {
   const [thumb, setThumb] = useState(product.images[0] || "/mock1.jpg");
   
+  useEffect(() => setThumb(product.images[0]), [product.id]);
+
   return (
     <section className={styles["product-images-block"]}>
       <div className={styles["product-images"]}>
