@@ -51,7 +51,7 @@ function NavBar() {
           </ul>
         </div>
         <nav id="navbar" className={styles.navBar}>
-          <NavButton title="Ofertas" link="/" />
+          <NavButton title="Ofertas" link="/onSale" />
           <NavButton title="Cómo comprar" link="/" />
           <NavButton title="Costos y tarifas" link="/" />
           <NavButton title="Mis pedidos" link="/" />
