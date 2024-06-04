@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Checkout.module.css";
 
 interface Product {
@@ -20,8 +20,9 @@ interface CheckoutProps {
 function Checkout({ product }: CheckoutProps) {
   const [quantity, setQuantity] = useState(1);
   const [button, setButton] = useState(false);
+  const units = useRef<HTMLInputElement>(null);
 
-  // Gestionar los datos del localStorage
+
   useEffect(() => {
     let productsOnCart: Product[] = [];
     const cart = localStorage.getItem("cart");
@@ -29,6 +30,12 @@ function Checkout({ product }: CheckoutProps) {
       productsOnCart = JSON.parse(cart);
     }
     const isInCart = productsOnCart.some((each) => each.id === product.id);
+    if (isInCart) {
+      const productOnCart = productsOnCart.find((each) => each.id === product.id);
+      setQuantity(productOnCart?.quantity || 1);
+    } else {
+      setQuantity(1);
+    }
     setButton(isInCart);
   }, [product]);
 
@@ -46,6 +53,7 @@ function Checkout({ product }: CheckoutProps) {
     } else {
       productsOnCart = productsOnCart.filter((each) => each.id !== product.id);
       setButton(false);
+      setQuantity(1);
     }
 
     localStorage.setItem("cart", JSON.stringify(productsOnCart));
@@ -84,8 +92,9 @@ function Checkout({ product }: CheckoutProps) {
               type="number"
               min="1"
               value={quantity}
+              ref={units}
               onChange={(event) => setQuantity(Number(event?.target.value))}
-            />
+            ></input>
             <button
               type="button"
               className={button ? styles["remove-btn"] : styles["cart-btn"]}
