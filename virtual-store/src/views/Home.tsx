@@ -1,4 +1,4 @@
-import styles from './Home.module.css';
+//import styles from './Home.module.css';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
@@ -12,8 +12,8 @@ function Home() {
     <>
       <NavBar />
       <Hero firstText={"tecnología"} secondText={"renovada"} />
-      <main>
-        <div className={styles["product-container"]} id="products">
+      <main className="w-full flex justify-center items-center p-[20px]">
+        <div className="w-[1080px] flex flex-wrap justify-between" id="products">
         {products.map((each) => (
             <ProductCard
               key={each.id}
