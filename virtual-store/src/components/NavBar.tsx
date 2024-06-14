@@ -7,14 +7,14 @@ function NavBar() {
     <>
       <header>
         <div className={styles.headerContainer}>
-          <a href="./index.html" className="header-logo">
+          <Link to={`/`} className="header-logo">
             <img
               className={styles.headerLogoImg}
               src="/tiendamia-logo.svg"
               width="218"
               alt="Logo store"
             ></img>
-          </a>
+          </Link>
           <form className={styles.headerForm}>
             <input
               className={styles.headerInput}
