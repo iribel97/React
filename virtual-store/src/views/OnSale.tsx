@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import products from "../assets/products";
 import OnSaleCard from './../components/OnSaleCard';
+import Product from "../interfaces/Product";
 
 export default function OnSale() {
   const [from, setFrom] = useState(0);
@@ -33,14 +34,14 @@ export default function OnSale() {
       <Hero firstText={"tecnología"} secondText={"renovada"} />
       <main>
         <div className={styles1["product-container"]} id="products">
-          {onSaleProducts.slice(from, to).map((each) => (
+          {onSaleProducts.slice(from, to).map((each: Product) => (
             <OnSaleCard
               key={each.id}
               id={each.id}
               title={each.title}
               price={each.price}
-              color={each.colors[0]}
-              image={each.images[0]}
+              colors={each.colors}
+              images={each.images}
             />
           ))}
         </div>

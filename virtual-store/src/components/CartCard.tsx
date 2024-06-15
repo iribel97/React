@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
+import ProductProp from "../interfaces/ProductProp";
 
-export default function CartCard({ product }) {
+export default function CartCard({ product }: ProductProp) {
   const {
     id,
     title,
@@ -12,7 +13,7 @@ export default function CartCard({ product }) {
     onsale,
     quantity,
   } = product;
-  const [totalPrice, setTotalPrice] = useState(price * quantity);
+  const [totalPrice, setTotalPrice] = useState(price * (quantity ?? 0));
   const units = useRef<HTMLInputElement>(null);
 
   const manageUnits = () => {

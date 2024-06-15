@@ -5,18 +5,7 @@ import Hero from "../components/Hero";
 import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import { useEffect, useState } from "react";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  stock: number;
-  images: string[];
-  colors: string[];
-  onsale: boolean;
-  quantity: number;
-}
+import Product from "../interfaces/Product";
 
 
 function Cart() {
@@ -35,7 +24,7 @@ function Cart() {
       <Hero firstText={"mi"} secondText={"carrito"} />
       <main>
         <section>
-          {productsOnCart.map((each) => (
+          {productsOnCart.map((each: Product) => (
             <CartCard
               key={each.id}
               product={each}
