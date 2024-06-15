@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import styles from "./Details.module.css";
-import styles1 from './Home.module.css';
+//import styles from "./Details.module.css";
+//import styles1 from "./Home.module.css";
 import Thumbs from "../components/Thumbs";
 import Description from "../components/Description";
 import Checkout from "../components/Checkout";
 import Footer from "../components/Footer";
+import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import products from "../assets/products";
 import ProductCard from "../components/ProductCard";
@@ -17,16 +18,22 @@ function Details() {
   return (
     <>
       <NavBar />
-      <main>
-        <div className={styles["details-container"]}>
-          <div id="details" className={styles["columns-container"]}>
-            <Thumbs product={product} />
-            <Description product={product} />
-            <Checkout product={product} />
-          </div>
-          <div className={styles["sales-block"]}>
-            <h2 className={styles["sales-title"]}>Ofertas de la semana</h2>
-            <div id="product-container" className={styles1["product-container"]}>
+      {!product && <Hero firstText="NOT" secondText="found" />}
+      <main className="w-full flex justify-center items-center p-[20px]">
+        <div className="w-full flex flex-wrap justify-between">
+          {product && (
+            <div id="details" className="w-full flex justify-center flex-wrap">
+              <Thumbs product={product} />
+              <Description product={product} />
+              <Checkout product={product} />
+            </div>
+          )}
+          <div className="w-full flex flex-col justify-center items-center">
+            <h2 className="text-[40px]">Week Sale</h2>
+            <div
+              id="product-container"
+              className="flex flex-col md:flex-row flex-wrap items-center justify-between w-full lg:w-[1024px]"
+            >
               {onsale.map((each) => (
                 <ProductCard
                   key={each.id}
@@ -36,7 +43,7 @@ function Details() {
                   color={each.colors[0]}
                   image={each.images[0]}
                 />
-              ))}	
+              ))}
             </div>
           </div>
         </div>

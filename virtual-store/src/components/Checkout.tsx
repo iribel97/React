@@ -22,7 +22,6 @@ function Checkout({ product }: CheckoutProps) {
   const [button, setButton] = useState(false);
   const units = useRef<HTMLInputElement>(null);
 
-
   useEffect(() => {
     let productsOnCart: Product[] = [];
     const cart = localStorage.getItem("cart");
@@ -31,7 +30,9 @@ function Checkout({ product }: CheckoutProps) {
     }
     const isInCart = productsOnCart.some((each) => each.id === product.id);
     if (isInCart) {
-      const productOnCart = productsOnCart.find((each) => each.id === product.id);
+      const productOnCart = productsOnCart.find(
+        (each) => each.id === product.id
+      );
       setQuantity(productOnCart?.quantity || 1);
     } else {
       setQuantity(1);
@@ -60,34 +61,30 @@ function Checkout({ product }: CheckoutProps) {
   };
 
   return (
-    <section className={styles["product-checkout-block"]}>
-      <div className={styles["checkout-container"]}>
-        <span className={styles["checkout-total-label"]}>Total:</span>
-        <h2 id="price" className={styles["checkout-total-price"]}>
+    <section className="w-[340px] p-[10px] m-[10px] flex flex-col">
+      <div className="bg-[#ebebeb] p-10 rounded-md">
+        <span className="text-[#ff3b3c]">Total:</span>
+        <h2 id="price" className="text-[28px] font-bold mt-[10px]">
           $ {(product.price * quantity).toLocaleString()}
         </h2>
-        <p className={styles["checkout-description"]}>
+        <p className="text-wrap leading-5 text-[12px]">
           Includes Country tax and AFIP collection
         </p>
-        <ul className={styles["checkout-policy-list"]}>
-          <li>
-            <span className={styles["policy-icon"]}>
-              <img src="/truck.png" alt="Truck" />
-            </span>
-            <span className={styles["policy-desc"]}></span>
+        <ul className="p-0 list-none mb-[30px]">
+          <li className="flex my-[15px]">
+            <img src="/truck.png" alt="Truck" className="mr-[15px]" />
+            <img src="/plane.png" alt="Plane" className="mr-[15px]" />
           </li>
           <li>
-            <span className={styles["policy-icon"]}>
-              <img src="/plane.png" alt="Plane" />
-            </span>
-            <span className={styles["policy-desc"]}>
+            <span className="text-wrap leading-5 text-[10px]">
               Add the product to the cart to know the shipping costs
             </span>
           </li>
         </ul>
         <div className={styles["checkout-process"]}>
-          <div className={styles["top"]}>
+          <div className="flex mb-[10px]">
             <input
+              className="h-[40px] rounded-md border-0 w-[60px] mr-[10px] p-[5px] pl-[15px] box-border"
               id="input-quantity"
               type="number"
               min="1"
@@ -97,7 +94,11 @@ function Checkout({ product }: CheckoutProps) {
             ></input>
             <button
               type="button"
-              className={button ? styles["remove-btn"] : styles["cart-btn"]}
+              className={
+                button
+                  ? "w-full bg-[#202020] hover:bg-[#b3aeae] text-[14px] text-white font-bold border-0 h-[40px] rounded-md"
+                  : "w-full bg-[#ff3b3c] hover:bg-[#faa4a4] text-[14px] text-white font-bold border-0 h-[40px] rounded-md"
+              }
               onClick={manageCart}
             >
               {button ? "Remove from cart" : "Add to cart"}
