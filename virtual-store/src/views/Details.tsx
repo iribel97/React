@@ -9,11 +9,12 @@ import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import products from "../assets/products";
 import ProductCard from "../components/ProductCard";
+import Product from "../interfaces/Product";
 
 function Details() {
   const { id } = useParams();
-  const product = products.find((each) => each.id === id);
-  const onsale = products.filter((each) => each.onsale);
+  const product: Product = products.find((each) => each.id === id);
+  const onsale: Product[] = products.filter((each) => each.onsale);
 
   return (
     <>
@@ -40,8 +41,8 @@ function Details() {
                   id={each.id}
                   title={each.title}
                   price={each.price}
-                  color={each.colors[0]}
-                  image={each.images[0]}
+                  colors={each.colors}
+                  images={each.images}
                 />
               ))}
             </div>
