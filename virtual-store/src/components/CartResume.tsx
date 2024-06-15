@@ -1,4 +1,4 @@
-export default function CartResume() {
+export default function CartResume({ total }) {
   return (
     <div className="w-[340px] h-[220px] flex flex-col justify-between rounded-md p-[30px] m-[10px] bg-[#f2f2f2]">
       <div className="flex-grow flex flex-col justify-between">
@@ -9,7 +9,7 @@ export default function CartResume() {
         </h2>
         <div className="flex justify-between items-center">
           <h3>Total</h3>
-          <strong>$800000</strong>
+          <strong>${total}</strong>
         </div>
         <small className="pb-[10px]">
           Incluye impuesto PAIS y percepción AFIP.

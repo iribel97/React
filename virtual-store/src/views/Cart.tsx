@@ -20,7 +20,7 @@ function Cart() {
           color="black"
         />
 
-        <CartResume />
+        <CartResume total="900000" />
       </main>
       <Footer />
     </>
