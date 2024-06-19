@@ -1,25 +1,34 @@
 //import styles from "./NavBar.module.css";
 import NavButton from "./NavButton";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productsActions from "../store/actions/products";
 
 const { capturarText } = productsActions;
 
 function NavBar() {
   const text = useRef<HTMLInputElement>(null);
+
   const dispatch = useDispatch();
-  const setText = () => { 
+  const location = useLocation();
+
+  const pathName = location.pathname;
+
+  const textStore = useSelector((store: any) => store.products.text);
+
+  const setText = () => {
     dispatch(capturarText({ text: text.current?.value }));
-  }
+  };
 
   return (
     <header className="w-full min-h-[150px] bg-[#ff3b3c] p-[20px 20px 0 20px] flex flex-col items-center">
-      <div className="w-full flex flex-col justify-between items-center flex-grow 
+      <div
+        className="w-full flex flex-col justify-between items-center flex-grow 
         md:flex-row
         lg:w-[1024px]
-      ">
+      "
+      >
         <Link
           to="/"
           className="w-full md:w-1/3 flex items-center justify-center md:justify-start flex-grow pt-2 md:p-0"
@@ -32,18 +41,23 @@ function NavBar() {
           />
         </Link>
         <form className="w-full md:w-1/3 flex items-center flex-grow justify-center py-2 md:py-0">
-          <input
-            className="h-[60px] border-0 rounded-[15px] w-full p-[10px] my-0 mx-[20px] text-[14px] text-center"
-            type="text"
-            placeholder="Search"
-            id="search"
-            ref={text}
-            onChange={setText}
-          />
+          {pathName === "/" && (
+            <input
+              className="h-[60px] border-0 rounded-[15px] w-full p-[10px] my-0 mx-[20px] text-[14px] text-center"
+              type="text"
+              placeholder="Search"
+              id="search"
+              ref={text}
+              defaultValue={textStore}
+              onChange={setText}
+            />
+          )}
         </form>
-        <ul className="w-full md:w-1/3 flex items-center flex-grow justify-center pb-2
+        <ul
+          className="w-full md:w-1/3 flex items-center flex-grow justify-center pb-2
           md:justify-end md:py-0
-        ">
+        "
+        >
           <li id="facebook" className="w-[50px] h-[50px] list-none">
             <a className="w-[50px] h-[50px]" href="https://facebook.com">
               <img
@@ -81,7 +95,6 @@ function NavBar() {
         <NavButton title="Garantía" link="/" />
       </nav>
     </header>
-
   );
 }
 
