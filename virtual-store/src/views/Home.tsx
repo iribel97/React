@@ -7,6 +7,7 @@ import ProductCard from "../components/ProductCard";
 import Product from "../interfaces/Product";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 
 
@@ -15,11 +16,17 @@ function Home() {
 
   const [products, setProducts] = useState<Product[]>([]);
 
+  const text = useSelector((store: any) => store.products.text);
+
   useEffect(() => {
     axios.get("/JSON/products.json")
-       .then((res) => setProducts(res.data))
+       .then((res) => {
+          const filtered = res.data.filter((each: Product) => each.title.toLowerCase().includes(text.toLowerCase()));
+          setProducts(filtered)
+        })
        .catch((err) => console.log(err));
-  }, []);
+  }, [text]);
+
 
   return (
     <>
