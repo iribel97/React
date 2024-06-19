@@ -1,5 +1,9 @@
 import { useRef, useState } from "react";
 import ProductProp from "../interfaces/ProductProp";
+import { useDispatch } from "react-redux";
+import productsActions from "../store/actions/products";
+
+const { calcularTotal } = productsActions;
 
 export default function CartCard({ product }: ProductProp) {
   const {
@@ -16,6 +20,8 @@ export default function CartCard({ product }: ProductProp) {
   const [totalPrice, setTotalPrice] = useState(price * (quantity ?? 0));
   const units = useRef<HTMLInputElement>(null);
 
+  const dispatch = useDispatch();
+
   const manageUnits = () => {
     let productsOnCart = JSON.parse(localStorage.getItem("cart") || "[]");
     const foundProduct = productsOnCart.find((each) => each.id === id);
@@ -28,6 +34,7 @@ export default function CartCard({ product }: ProductProp) {
         return each;
       });
     }
+    dispatch(calcularTotal({ products: productsOnCart }));
     setTotalPrice(price * Number(units.current?.value));
     localStorage.setItem("cart", JSON.stringify(productsOnCart));
   };

@@ -9,7 +9,14 @@ const capturarText = createAction('capturarText', (obj) => {
     };
 });
 
+//Crear accion para calcular el total
+const calcularTotal = createAction('calcularTotal', (obj) => {
+    return {
+        payload: { products: obj.products },
+    };
+});
+
 //Se exporta un objeto con la constante capturarText.
-const productsActions = { capturarText };
+const productsActions = { capturarText, calcularTotal };
 
 export default productsActions;
